@@ -7,10 +7,10 @@ const Hero = () => {
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden section-padding pt-28">
       {/* Dot grid background */}
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)`,
-          backgroundSize: '40px 40px'
-        }} />
+      style={{
+        backgroundImage: `radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)`,
+        backgroundSize: '40px 40px'
+      }} />
       
       {/* Gradient mesh background */}
       <div className="absolute inset-0 pointer-events-none">
@@ -160,7 +160,7 @@ const Hero = () => {
               alt="Kande Vamshi Krishna"
               className="w-full h-full object-cover object-[center_25%] scale-110"
               whileHover={{ scale: 1.18 }}
-              transition={{ duration: 0.4 }} src="/lovable-uploads/9236dbfa-ff84-42ea-9027-f9e219b6cc85.png" />
+              transition={{ duration: 0.4 }} src="/lovable-uploads/1fed168a-6d23-4027-9846-2d3c389aea4b.jpg" />
           </div>
         </motion.div>
       </div>
