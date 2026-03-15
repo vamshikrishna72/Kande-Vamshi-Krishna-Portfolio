@@ -155,14 +155,12 @@ const Hero = () => {
             }}
             transition={{ duration: 8, repeat: Infinity, ease: "linear" }} />
           
-          <div className="w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-2 border-primary/30 relative z-10">
+          <div className="w-60 h-60 md:w-80 md:h-80 rounded-full overflow-hidden border-2 border-primary/30 relative z-10 shadow-2xl shadow-primary/20">
             <motion.img
-
               alt="Kande Vamshi Krishna"
-              className="w-full h-full object-cover object-top"
-              whileHover={{ scale: 1.08 }}
+              className="w-full h-full object-cover object-[center_25%] scale-110"
+              whileHover={{ scale: 1.18 }}
               transition={{ duration: 0.4 }} src="/lovable-uploads/9236dbfa-ff84-42ea-9027-f9e219b6cc85.png" />
-            
           </div>
         </motion.div>
       </div>
