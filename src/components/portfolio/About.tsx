@@ -62,8 +62,8 @@ const About = () => {
             {[
               "I'm a Computer Science and Engineering student at Lovely Professional University with a strong passion for building impactful technology solutions using AI, Cloud Computing, and Full-Stack Development.",
               "As a Google Student Ambassador, I represent Google at campus events and drive student engagement in AI and developer communities. I've completed internships at Infosys and Microsoft.",
-              "I thrive on solving complex problems — from building blockchain-powered logistics systems to AI chatbots for medical symptom analysis. I've also filed a patent on an AI-powered dream recording system.",
-              "With 100+ days of consistent LeetCode problem-solving and certifications from Google and Deloitte, I bring strong algorithmic foundations paired with practical engineering skills.",
+              "I thrive on solving complex problems from building blockchain-powered logistics systems to AI chatbots for medical symptom analysis. I've also filed a patent on an AI-powered dream recording system.",
+              "With 200+ days of consistent LeetCode problem-solving and certifications from Google and Deloitte, I bring strong algorithmic foundations paired with practical engineering skills.",
             ].map((text, i) => (
               <motion.p
                 key={i}
