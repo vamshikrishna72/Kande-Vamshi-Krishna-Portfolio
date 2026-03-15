@@ -5,9 +5,22 @@ import profileImg from "@/assets/vamshi-profile.jpeg";
 const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden section-padding pt-28">
+      {/* Dot grid background */}
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)`,
+          backgroundSize: '40px 40px'
+        }} />
+      
+      {/* Gradient mesh background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/[0.03] via-transparent to-accent/[0.03]" />
+        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-primary/[0.05] to-transparent rounded-full blur-[100px]" />
+      </div>
+
       {/* Animated ambient glows */}
       <motion.div
-        animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
+        animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.12, 0.05] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-1/4 left-1/3 w-[500px] h-[500px] rounded-full bg-primary/10 blur-[150px] pointer-events-none" />
       
