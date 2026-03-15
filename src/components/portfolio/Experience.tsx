@@ -20,7 +20,7 @@ const experiences = [
     points: [
       "Engineered a secure GUI-based system call interface using python-ptrace and psutil, reducing unauthorized system call attempts by 70%.",
       "Built a real-time security monitoring pipeline tracking 150+ system metrics with 95% detection accuracy.",
-      "Evolved RBAC with structured SQLite logging — zero successful privilege escalation during penetration testing.",
+      "Evolved RBAC with structured SQLite logging zero successful privilege escalation during penetration testing.",
     ],
   },
 ];
