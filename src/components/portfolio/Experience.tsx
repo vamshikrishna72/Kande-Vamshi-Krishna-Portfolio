@@ -10,7 +10,7 @@ const experiences = [
     points: [
       "Built a real-time Smart Traffic Management System using YOLOv5, OpenCV, and Tesseract OCR, achieving 94% vehicle detection accuracy at 25+ FPS.",
       "Developed a modular ANPR + ATCC pipeline supporting 5+ vehicle classes, automating congestion analysis and reducing manual survey effort by 80%.",
-      "Deployed a Dockerized microservices architecture with Python, Flask, Streamlit, and SQLite — 99% uptime during stress testing.",
+      "Deployed a Dockerized microservices architecture with Python, Flask, Streamlit, and SQLite 99% uptime during stress testing.",
     ],
   },
   {
