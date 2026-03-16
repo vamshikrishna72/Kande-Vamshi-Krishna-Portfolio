@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import profileImg from "@/assets/vamshi-profile.jpeg";
 
 const counters = [
-  { label: "LeetCode Problems", value: 200, suffix: "+" },
+  { label: "LeetCode Problems", value: 300, suffix: "+" },
   { label: "AI Projects", value: 5, suffix: "+" },
   { label: "Internships", value: 2, suffix: "" },
   { label: "Certifications", value: 3, suffix: "" },
