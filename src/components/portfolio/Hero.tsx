@@ -4,7 +4,7 @@ import { ArrowDown, Github, Linkedin, Mail, FileDown } from "lucide-react";
 
 const roles = [
   "Computer Science Engineer",
-  "AI Developer",
+  "AI Developer & Machine Learning Innovator",
   "Cloud & AI Enthusiast",
   "Google Student Ambassador",
 ];
