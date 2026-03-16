@@ -49,15 +49,19 @@ const Education = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="p-6 rounded-xl bg-card border border-border flex gap-4"
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="p-6 rounded-xl bg-card border border-border hover:border-primary/30 hover:shadow-[0_0_25px_-5px_hsl(var(--primary)/0.15)] transition-all duration-300 flex gap-4 group"
             >
               <div className="shrink-0 mt-1">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                <motion.div
+                  className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors"
+                  whileHover={{ rotate: 10 }}
+                >
                   <GraduationCap size={20} className="text-primary" />
-                </div>
+                </motion.div>
               </div>
               <div>
-                <h3 className="font-semibold">{edu.school}</h3>
+                <h3 className="font-semibold group-hover:text-primary transition-colors">{edu.school}</h3>
                 <p className="text-sm text-muted-foreground">{edu.location}</p>
                 <p className="text-sm mt-1">{edu.degree}</p>
                 <div className="flex items-center gap-3 mt-2">

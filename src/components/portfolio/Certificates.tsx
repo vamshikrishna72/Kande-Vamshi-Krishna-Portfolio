@@ -3,10 +3,10 @@ import { useRef } from "react";
 import { Award, ExternalLink } from "lucide-react";
 
 const certs = [
-  { title: "Google AI Essentials", issuer: "Google via Coursera", date: "Sep 2025" },
-  { title: "Google Gemini Certified Educator", issuer: "Google", date: "Sep 2025" },
-  { title: "Technology Virtual Experience", issuer: "Deloitte via Forage", date: "Oct 2025" },
-  { title: "Building Agentic AI Applications", issuer: "Programming Pathshala", date: "Jul 2025" },
+  { title: "Google AI Essentials", issuer: "Google via Coursera", date: "Sep 2025", link: "" },
+  { title: "Google Gemini Certified Educator", issuer: "Google", date: "Sep 2025", link: "" },
+  { title: "Technology Virtual Experience", issuer: "Deloitte via Forage", date: "Oct 2025", link: "" },
+  { title: "Building Agentic AI Applications", issuer: "Programming Pathshala", date: "Jul 2025", link: "" },
 ];
 
 const activities = [
@@ -43,10 +43,31 @@ const Certificates = () => {
             </h3>
             <div className="space-y-3">
               {certs.map((c, i) => (
-                <div key={i} className="p-4 rounded-lg bg-card border border-border">
-                  <p className="font-medium text-sm">{c.title}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{c.issuer} • {c.date}</p>
-                </div>
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 0.2 + i * 0.1 }}
+                  whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                  className="p-4 rounded-lg bg-card border border-border hover:border-primary/30 hover:shadow-[0_0_20px_-5px_hsl(var(--primary)/0.15)] transition-all duration-300 group"
+                >
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <p className="font-medium text-sm group-hover:text-primary transition-colors">{c.title}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{c.issuer} • {c.date}</p>
+                    </div>
+                    {c.link && (
+                      <a
+                        href={c.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-muted-foreground hover:text-primary transition-colors shrink-0 ml-2"
+                      >
+                        <ExternalLink size={14} />
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
@@ -59,10 +80,17 @@ const Certificates = () => {
             <h3 className="text-lg font-semibold mb-4">Co-Curricular Activities</h3>
             <ul className="space-y-3">
               {activities.map((a, i) => (
-                <li key={i} className="text-sm text-muted-foreground leading-relaxed flex gap-2 p-4 rounded-lg bg-card border border-border">
+                <motion.li
+                  key={i}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 0.2 + i * 0.1 }}
+                  whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                  className="text-sm text-muted-foreground leading-relaxed flex gap-2 p-4 rounded-lg bg-card border border-border hover:border-primary/30 hover:shadow-[0_0_20px_-5px_hsl(var(--primary)/0.15)] transition-all duration-300"
+                >
                   <span className="text-primary mt-0.5 shrink-0">▹</span>
                   <span>{a}</span>
-                </li>
+                </motion.li>
               ))}
             </ul>
           </motion.div>
