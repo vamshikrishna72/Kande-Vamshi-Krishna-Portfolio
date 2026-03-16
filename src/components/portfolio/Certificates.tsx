@@ -77,7 +77,8 @@ const Certificates = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}>
             
-            <h3 className="text-lg font-semibold mb-4">Achievements</h3>
+            <h3 className="text-lg font-semibold mb-4">
+</h3>
             <ul className="space-y-3">
               {activities.map((a, i) => <motion.li
                 key={i}
