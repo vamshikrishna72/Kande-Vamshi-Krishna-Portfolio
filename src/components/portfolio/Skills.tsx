@@ -58,13 +58,22 @@ const Skills = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors group"
+              whileHover={{ y: -6, transition: { duration: 0.2 } }}
+              className="p-6 rounded-xl bg-card border border-border hover:border-primary/30 hover:shadow-[0_0_25px_-5px_hsl(var(--primary)/0.2)] transition-all duration-300 group"
             >
-              <cat.icon className="text-primary mb-4" size={28} />
+              <motion.div
+                whileHover={{ rotate: 10, scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <cat.icon className="text-primary mb-4" size={28} />
+              </motion.div>
               <h3 className="font-semibold text-lg mb-3">{cat.title}</h3>
               <div className="flex flex-wrap gap-2">
                 {cat.skills.map((s) => (
-                  <span key={s} className="text-xs px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground font-mono">
+                  <span
+                    key={s}
+                    className="text-xs px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground font-mono hover:bg-primary/20 hover:text-primary transition-colors cursor-default"
+                  >
                     {s}
                   </span>
                 ))}

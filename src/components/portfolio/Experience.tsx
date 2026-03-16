@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Briefcase } from "lucide-react";
 
@@ -28,6 +28,8 @@ const experiences = [
 const Experience = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <section id="experience" className="section-padding" ref={ref}>
@@ -42,23 +44,32 @@ const Experience = () => {
         </motion.div>
 
         <div className="relative">
-          {/* Timeline line */}
+          {/* Static timeline track */}
           <div className="absolute left-4 md:left-6 top-0 bottom-0 w-px bg-border" />
+          {/* Animated timeline line */}
+          <motion.div
+            className="absolute left-4 md:left-6 top-0 w-px bg-primary origin-top"
+            style={{ height: lineHeight }}
+          />
 
           <div className="space-y-12">
             {experiences.map((exp, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: -40 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.2 }}
-                className="relative pl-12 md:pl-16"
+                transition={{ duration: 0.6, delay: i * 0.25 }}
+                whileHover={{ x: 4, transition: { duration: 0.2 } }}
+                className="relative pl-12 md:pl-16 group"
               >
-                <div className="absolute left-2 md:left-4 top-1 w-5 h-5 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center">
+                <motion.div
+                  className="absolute left-2 md:left-4 top-1 w-5 h-5 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center group-hover:bg-primary/40 transition-colors"
+                  whileHover={{ scale: 1.3 }}
+                >
                   <Briefcase size={10} className="text-primary" />
-                </div>
+                </motion.div>
                 <span className="text-xs font-mono text-primary mb-1 block">{exp.period}</span>
-                <h3 className="text-xl font-semibold">{exp.role}</h3>
+                <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">{exp.role}</h3>
                 <p className="text-muted-foreground text-sm mb-3">{exp.company}</p>
                 <ul className="space-y-2">
                   {exp.points.map((p, j) => (
