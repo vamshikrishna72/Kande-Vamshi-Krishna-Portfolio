@@ -14,9 +14,9 @@ const projects = [
       "Designed normalized relational DB schema optimizing query performance by 40% through indexing.",
       "Integrated AWS S3 for secure contract storage and Pandas analytics to reduce route inefficiencies by 25%.",
     ],
-    github: "https://github.com/vamshikrishna72",
-    demo: "",
-    image: "",
+    github: "https://github.com/vamshikrishna72/Smart-Logistics-Services",
+    demo: "#",
+    image: "/projects/smart-logistics.png",
   },
   {
     title: "AI Chatbot for Symptom Analysis",
@@ -29,9 +29,9 @@ const projects = [
       "Improved prediction accuracy by 30% via TF-IDF vectorization and multi-model evaluation (LR, SVM, NB).",
       "Optimized Flask backend reducing response time by 35% and achieving 98% uptime.",
     ],
-    github: "https://github.com/vamshikrishna72",
-    demo: "",
-    image: "",
+    github: "https://github.com/vamshikrishna72/AI-Symptom-Checker",
+    demo: "#",
+    image: "/projects/AI chatbot for symptom analysis.png",
   },
   {
     title: "HealthMate Diagnosis – AI Medical Analysis",
@@ -44,9 +44,9 @@ const projects = [
       "Integrated Gemini 1.5 Pro NLP for interpreting user inputs for medical guidance and triage.",
       "Built clinic location finder (Google Maps) and virtual payment system (Razorpay) with data privacy.",
     ],
-    github: "https://github.com/vamshikrishna72",
-    demo: "",
-    image: "",
+    github: "https://github.com/vamshikrishna72/HealthMate-ai-medical-diagnosis-chatbot",
+    demo: "#",
+    image: "/projects/Healthmate.png",
   },
   {
     title: "Smart Traffic Management System",
@@ -59,9 +59,9 @@ const projects = [
       "Built modular ANPR + ATCC pipeline supporting 5+ vehicle classes.",
       "Deployed Dockerized microservices architecture with 99% uptime during stress testing.",
     ],
-    github: "https://github.com/vamshikrishna72",
-    demo: "",
-    image: "",
+    github: "https://github.com/vamshikrishna72/AI-Powered-ANPR-ATCC-Surveillance-System",
+    demo: "#",
+    image: "/projects/Smart Traffic Management.png",
   },
 ];
 
@@ -112,6 +112,17 @@ const Projects = () => {
               />
 
               <div className="relative p-6 rounded-2xl glass border border-border/50 hover:border-transparent hover-glow transition-all duration-400 flex flex-col h-full">
+                {/* Image Preview */}
+                {proj.image && (
+                  <div className="mb-5 overflow-hidden rounded-xl border border-border/30">
+                    <img 
+                      src={proj.image} 
+                      alt={proj.title} 
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                )}
+
                 {/* Header */}
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-3">
