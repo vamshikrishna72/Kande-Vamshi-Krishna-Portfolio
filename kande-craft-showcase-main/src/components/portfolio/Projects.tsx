@@ -111,7 +111,7 @@ const Projects = () => {
                 }}
               />
 
-              <div className="relative p-6 rounded-2xl glass border border-border/50 hover:border-transparent hover-glow transition-all duration-400 flex flex-col h-full">
+              <div className="relative p-6 rounded-2xl glass border border-border/50 hover:border-transparent hover-glow transition-all duration-400 flex flex-col h-full" style={{ willChange: "transform, opacity, border-color" }}>
                 {/* Image Preview */}
                 {proj.image && (
                   <div className="mb-5 overflow-hidden rounded-xl border border-border/30">

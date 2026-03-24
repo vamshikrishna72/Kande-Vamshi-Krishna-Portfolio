@@ -47,7 +47,8 @@ const ParticleBackground = () => {
 
     let animId: number;
     const particles: { x: number; y: number; vx: number; vy: number; r: number; hue: number }[] = [];
-    const count = 60;
+    const isMobile = window.innerWidth < 768;
+    const count = isMobile ? 25 : 60;
 
     const resize = () => {
       canvas.width = canvas.offsetWidth;
@@ -60,15 +61,16 @@ const ParticleBackground = () => {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        r: Math.random() * 2.5 + 0.5,
+        vx: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.4),
+        vy: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.4),
+        r: isMobile ? (Math.random() * 2 + 0.5) : (Math.random() * 2.5 + 0.5),
         hue: 170 + Math.random() * 120,
       });
     }
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const connectionDist = isMobile ? 100 : 130;
 
       particles.forEach((p, i) => {
         p.x += p.vx;
@@ -78,19 +80,20 @@ const ParticleBackground = () => {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${p.hue}, 80%, 60%, 0.35)`;
+        ctx.fillStyle = isMobile ? `hsla(${p.hue}, 80%, 60%, 0.3)` : `hsla(${p.hue}, 80%, 60%, 0.35)`;
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
           const dx = p.x - particles[j].x;
           const dy = p.y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 130) {
+          if (dist < connectionDist) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(particles[j].x, particles[j].y);
             const avgHue = (p.hue + particles[j].hue) / 2;
-            ctx.strokeStyle = `hsla(${avgHue}, 70%, 55%, ${0.12 * (1 - dist / 130)})`;
+            const opacity = isMobile ? (0.1 * (1 - dist / connectionDist)) : (0.12 * (1 - dist / connectionDist));
+            ctx.strokeStyle = `hsla(${avgHue}, 70%, 55%, ${opacity})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -114,7 +117,15 @@ const Hero = () => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -181,24 +192,39 @@ const Hero = () => {
         <FloatingShape key={i} {...s} />
       ))}
 
-      {/* Mesh gradient orbs */}
+      {/* Mesh gradient orbs - Optimized for mobile */}
       <motion.div
-        animate={{ scale: [1, 1.3, 1], opacity: [0.06, 0.14, 0.06] }}
+        animate={isMobile ? {} : { scale: [1, 1.3, 1], opacity: [0.06, 0.14, 0.06] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, hsl(170 90% 50% / 0.15), transparent 70%)", filter: "blur(80px)" }}
+        className="absolute top-1/4 left-1/4 w-[400px] md:w-[600px] h-[400px] md:h-[600px] rounded-full pointer-events-none"
+        style={{ 
+          background: `radial-gradient(circle, hsl(170 90% 50% / ${isMobile ? '0.12' : '0.15'}), transparent 70%)`, 
+          filter: isMobile ? "blur(60px)" : "blur(80px)",
+          opacity: isMobile ? 0.08 : 1,
+          willChange: isMobile ? "auto" : "transform, opacity"
+        }}
       />
       <motion.div
-        animate={{ scale: [1, 1.2, 1], opacity: [0.04, 0.1, 0.04] }}
+        animate={isMobile ? {} : { scale: [1, 1.2, 1], opacity: [0.04, 0.1, 0.04] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, hsl(280 80% 65% / 0.12), transparent 70%)", filter: "blur(80px)" }}
+        className="absolute bottom-1/4 right-1/4 w-[350px] md:w-[500px] h-[350px] md:h-[500px] rounded-full pointer-events-none"
+        style={{ 
+          background: `radial-gradient(circle, hsl(280 80% 65% / ${isMobile ? '0.10' : '0.12'}), transparent 70%)`, 
+          filter: isMobile ? "blur(60px)" : "blur(80px)",
+          opacity: isMobile ? 0.08 : 1,
+          willChange: isMobile ? "auto" : "transform, opacity"
+        }}
       />
       <motion.div
-        animate={{ scale: [1.1, 1, 1.1], opacity: [0.03, 0.08, 0.03] }}
+        animate={isMobile ? {} : { scale: [1.1, 1, 1.1], opacity: [0.03, 0.08, 0.03] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, hsl(220 90% 60% / 0.08), transparent 70%)", filter: "blur(100px)" }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[700px] h-[500px] md:h-[700px] rounded-full pointer-events-none"
+        style={{ 
+          background: `radial-gradient(circle, hsl(220 90% 60% / ${isMobile ? '0.06' : '0.08'}), transparent 70%)`, 
+          filter: isMobile ? "blur(70px)" : "blur(100px)",
+          opacity: isMobile ? 0.08 : 1,
+          willChange: isMobile ? "auto" : "transform, opacity"
+        }}
       />
 
       {/* Dot grid */}
@@ -317,7 +343,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3, duration: 0.8, type: "spring", stiffness: 80 }}
-          style={{ rotateX, rotateY, perspective: 1000 }}
+          style={{ rotateX, rotateY, perspective: 1000, willChange: "transform" }}
           className="relative flex-shrink-0"
         >
           {/* Animated holographic ring */}
